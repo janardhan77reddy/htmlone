@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="content">
+        <div class="container">
+            <div class="agecontainer">
+                <h1>Age Calculator</h1>
+            </div>
+            <div class="inputone">
+                <div class="inputcontent">
+                    <label for="date">Date</label>
+                    <input type="number" id="day" min="1"  max="31" placeholder="dd" required>
+                </div>
+                <div class="inputcontent">
+                    <label for="month">Month</label>
+                    <input type="number" id="month" min="1"  max="31" placeholder="mm" required>
+                </div>
+                <div class="inputcontent">
+                    <label for="year">Year</label>
+                    <input type="number" id="year" min="1900"  max="2023" placeholder="yyyy" required>
+                </div>
+            </div>
+            <div class="buttoncontent">
+                <button id="calculate" type="button" onclick="calculateAge()">Submit</button>
+            </div>
+        </div>
+        <div id="result"></div>
+    </div>
+    <script>
+        function calculateAge (){
+            let day = parseInt(document.getElementById("day").value);
+            let month = parseInt(document.getElementById("month").value);
+            let year = parseInt(document.getElementById("year").value);
+
+            if(isNaN(day) || isNaN(month) || isNaN(year)){
+                alert("please enter vaild values for all fields");
+                return;
+            }
+
+            let today = new Date();
+            let birthDate = new Date(year, month-1, day);
+            let age = today.getFullYear() - birthDate.getFullYear();
+            let monthDiff = today.getMonth() - birthDate.getMonth();
+            if(monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())){
+                age--;
+                monthDiff += 12;
+            }
+            let dayDiff = today.getDate() - birthDate.getDate();
+            if(dayDiff < 0){
+                monthDiff--;
+                dayDiff += new Date(today.getFullYear(), today.getMonth(), 0).getDate();
+            }
+
+            let resultElement = document.getElementById("result");
+            resultElement.innerHTML = "your Age is " + age + "years" + monthDiff + "Months" + dayDiff + "days.";
+        }
+    </script>
+</body>
+</html> 
