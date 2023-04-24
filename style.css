@@ -1,0 +1,24 @@
+.content {
+    justify-content: center;
+    text-align: center;
+    border: 5px solid blueviolet;
+    border-radius: 12px;
+    background-color: aquamarine;
+}
+.inputone {
+    display: inline-flex;
+}
+.inputcontent {
+    margin-left: 10px;
+    margin-bottom: 50px;
+}
+#result {
+    font-size: 30px;
+    font-weight: bold;
+    margin-top: 30px;
+}
+.error {
+    color: red;
+    font-weight: bold;
+    font-size: 10px;
+}
